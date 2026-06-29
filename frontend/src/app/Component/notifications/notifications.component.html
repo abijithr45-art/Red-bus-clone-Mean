@@ -1,0 +1,67 @@
+<div class="notification-container">
+  <h1>Notification System</h1>
+  <p>Email, push notification, preferences, retry, delivery status and notification history.</p>
+
+  <div class="card">
+    <h2>Notification Preferences</h2>
+
+    <label>
+      <input type="checkbox" [(ngModel)]="preferences.email">
+      Email Notifications
+    </label>
+
+    <label>
+      <input type="checkbox" [(ngModel)]="preferences.push">
+      Push Notifications
+    </label>
+
+    <label>
+      <input type="checkbox" [(ngModel)]="preferences.promotional">
+      Promotional / Offer Notifications
+    </label>
+
+    <label>Language</label>
+    <select [(ngModel)]="preferences.language">
+      <option value="en">English</option>
+      <option value="ml">Malayalam</option>
+      <option value="hi">Hindi</option>
+    </select>
+
+    <button (click)="savePreferences()">Save Preferences</button>
+  </div>
+
+  <div class="card">
+    <h2>Send Demo Notification</h2>
+
+    <input [(ngModel)]="newNotification.title" placeholder="Notification title">
+    <textarea [(ngModel)]="newNotification.message" placeholder="Notification message"></textarea>
+
+    <select [(ngModel)]="newNotification.type">
+      <option value="booking">Booking Confirmation</option>
+      <option value="cancel">Cancellation</option>
+      <option value="schedule">Schedule Change</option>
+      <option value="reminder">Journey Reminder</option>
+      <option value="offer">Offer / Promotion</option>
+    </select>
+
+    <button (click)="sendNotification()">Send Notification</button>
+  </div>
+
+  <div class="card">
+    <h2>Notification History</h2>
+
+    <div *ngFor="let n of notifications" class="notification-item" [class.read]="n.isRead">
+      <h3>{{ n.title }}</h3>
+      <p>{{ n.message }}</p>
+      <p><b>Type:</b> {{ n.type }}</p>
+      <p><b>Email:</b> {{ n.deliveryStatus.email }} | <b>Push:</b> {{ n.deliveryStatus.push }}</p>
+      <p><b>Retries:</b> {{ n.retryCount }} | <b>Language:</b> {{ n.language }}</p>
+      <small>{{ n.createdAt | date:'short' }}</small>
+
+      <div>
+        <button (click)="markRead(n._id)">Mark Read</button>
+        <button (click)="retry(n._id)">Retry Delivery</button>
+      </div>
+    </div>
+  </div>
+</div>

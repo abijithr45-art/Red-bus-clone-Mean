@@ -1,0 +1,75 @@
+.community-container {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 20px;
+}
+
+.create-card,
+.post-card,
+.popular-card {
+  background: white;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 14px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.12);
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  margin: 8px 0;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+textarea {
+  min-height: 100px;
+}
+
+button {
+  padding: 10px 16px;
+  margin: 5px;
+  border: none;
+  border-radius: 8px;
+  background: #d84a55;
+  color: white;
+  cursor: pointer;
+}
+
+.warning {
+  padding: 10px;
+  background: #fff3cd;
+  color: #856404;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.meta {
+  color: gray;
+  font-size: 14px;
+}
+
+.post-img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin: 10px 0;
+}
+
+.comment {
+  background: #f2f2f2;
+  padding: 8px;
+  border-radius: 8px;
+  margin: 5px 0;
+}
+
+.filter {
+  margin: 20px 0;
+}
+
+.popular {
+  margin-bottom: 20px;
+}

@@ -1,0 +1,68 @@
+<div class="community-container">
+  <h1>Traveler Community</h1>
+  <p>Share journey stories, travel tips, photos, and route experiences.</p>
+
+  <div class="create-card">
+    <h2>Create Post</h2>
+
+    <div *ngIf="!user" class="warning">
+      Only verified Google signed-in users can create posts.
+    </div>
+
+    <input [(ngModel)]="newPost.title" placeholder="Post title">
+    <textarea [(ngModel)]="newPost.content" placeholder="Share your journey story or travel tip"></textarea>
+
+    <select [(ngModel)]="newPost.topic">
+      <option>Routes</option>
+      <option>Destinations</option>
+      <option>Travel Tips</option>
+      <option>Travel Advice</option>
+    </select>
+
+    <input [(ngModel)]="newPost.photoUrl" placeholder="Photo URL optional">
+
+    <button (click)="createPost()">Post</button>
+  </div>
+
+  <div class="filter">
+    <label>Forum Topic:</label>
+    <select [(ngModel)]="selectedTopic">
+      <option *ngFor="let topic of topics">{{ topic }}</option>
+    </select>
+  </div>
+
+  <div class="popular">
+    <h2>Popular Posts</h2>
+    <div *ngFor="let post of popularPosts" class="popular-card">
+      🔥 {{ post.title }} - {{ post.likes }} likes
+    </div>
+  </div>
+
+  <div *ngFor="let post of filteredPosts" class="post-card">
+    <h2>{{ post.title }}</h2>
+    <p class="meta">
+      By {{ post.userName }} | {{ post.topic }} | {{ post.createdAt | date:'short' }}
+    </p>
+
+    <img *ngIf="post.photoUrl" [src]="post.photoUrl" class="post-img">
+
+    <p>{{ post.content }}</p>
+
+    <div class="actions">
+      <button (click)="likePost(post._id)">👍 Like {{ post.likes }}</button>
+      <button (click)="sharePost(post)">Share</button>
+      <button (click)="reportPost(post._id)">Report</button>
+    </div>
+
+    <div class="comments">
+      <h3>Comments</h3>
+
+      <div *ngFor="let c of post.comments" class="comment">
+        <b>{{ c.userName }}:</b> {{ c.text }}
+      </div>
+
+      <input [(ngModel)]="commentText[post._id]" placeholder="Write a comment">
+      <button (click)="addComment(post._id)">Comment</button>
+    </div>
+  </div>
+</div>
